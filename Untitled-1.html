@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Primeiro Site</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            color: #fff;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .banner {
+            background-image: url('images/bannersite.png');
+            background-size: cover;
+            background-position: center 42%;
+            background-color: #48a0ff; /* fallback */
+            color: #fff;
+            padding: 8rem 0; /* aumentado para mostrar mais do banner */
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #2f84df;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #bdd1ec;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background-color: #fff;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        button.work1 {
+            background-color: #2f84df;
+            color: #020202;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2rem; /* adicionado para separar do texto acima */            font-weight: bold; /* adicionado para deixar a fonte mais grossa */        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+
+        button.work2 {
+            background-color: #2f84df;
+            color: #020202;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2rem; /* adicionado para separar do texto acima */            font-weight: bold; /* adicionado para deixar a fonte mais grossa */        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Galeria de trabalhos/ilustrações */
+        .work-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem; /* adicionado espaço acima da galeria */
+        }
+
+        .work-gallery figure {
+            background-color: #fafafa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: visible;
+        }
+
+        .work-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto 1rem auto; /* adicionado 1rem de margem inferior */
+            transition: transform .5s ease, box-shadow .5s ease;
+            cursor: zoom-in;
+            will-change: transform;
+        }
+
+ 
+
+        /* Overlay com backdrop-filter para desfoque AO REDOR da imagem focada */
+        #focus-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.25);
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .5s ease, -webkit-backdrop-filter .5s ease, backdrop-filter .5s ease;
+            z-index: 4;
+        }
+
+        #focus-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+            -webkit-backdrop-filter: blur(6px) saturate(0.95);
+            backdrop-filter: blur(6px) saturate(0.95);
+        }
+
+        /* Ao invés de aplicar blur a todo o main, mantemos a galeria fora do desfoque
+           posicionando a figura focada acima do overlay. */
+        body.img-focus .work-gallery figure.focused {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 80vw;
+            max-height: 80vh;
+            z-index: 6;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        body.img-focus .work-gallery figure.focused img {
+            width: auto;
+            max-width: 80vw;
+            max-height: 80vh;
+            transform: none !important;
+            border-radius: 6px;
+            cursor: zoom-out;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</#head>
+<body>
+    <header>
+        <div class="banner">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!--
+        <section id="home">
+            <h2>Seção Inicial</h2>
+            <p>Conteúdo do seu site aqui...</p>
+            <button id="myButton">Clique em mim</button>
+        </section>
+        -->
+            <div class="work-gallery" aria-label="Ilustrações do trabalho">
+                <figure>
+                    <figcaption>Nossos serviços 
+                    
+                    </figcaption>
+                    <img id="work1" src="images/work1.png" alt="Exemplo de trabalho 1">
+                    <figcaption> Clique e Saiba Mais <figcaption>
+
+
+                    <button class="work1">Saiba Mais</button>    
+
+                    
+                    </figcaption>
+                </figure>
+                <figure>
+                    <figcaption>Nossas Redes Sociais
+
+                    </figcaption>
+                    <img src="images/work2.png" alt="Exemplo de trabalho 2">
+                    
+
+                    <figcaption> Venha Conhecer Nossas Redes Sociais, Conhecer Nossos serviços, Saber Mais Sobre Está Empresa Que Visa Sempre a Honestidade e a Total Transparência Com Nossos Cliente !!!</figcaption>
+                
+                
+                    <button class="work2">Nossa Rede Social</button>
+
+
+                </figure>
+                <!--
+                <figure>
+                    <img src="images/work3.svg" alt="Exemplo de trabalho 3">
+                    <figcaption>Treinamento e workshops: capacitação</figcaption>
+                </figure>
+                -->
+            </div>
+
+        <section id="about">
+            <h2>Sobre</h2>
+            <p>Informações sobre você ou seu projeto.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contato</h2>
+            <p>Entre em contato conosco!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Meu Primeiro Site. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="focus-overlay" aria-hidden="true"></div>
+    <script src="script.js"></script>
+</body>
+</html>
